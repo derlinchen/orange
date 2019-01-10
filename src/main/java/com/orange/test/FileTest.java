@@ -3,6 +3,7 @@ package com.orange.test;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -15,16 +16,26 @@ public class FileTest {
 
 	public static void main(String[] args) {
 		try {
-			getmethod();
+			pathmethod();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static void getmethod() throws Exception {
+	public static void getmethod() throws Exception{
+		// 创建httpclient对象
 		CloseableHttpClient client = HttpClients.createDefault();
-		HttpGet httpGet = new HttpGet("http://localhost:8080/orange/get/hshshs");
+		URIBuilder builder = new URIBuilder("http://localhost:8080/orange/get.do");
+		builder.setParameter("id", "hello");
+		HttpGet httpGet = new HttpGet(builder.build());
+		httpGet.setHeader("Content-type", "application/json;charset=utf-8");
+		client.execute(httpGet);
+	}
+	
+	public static void pathmethod() throws Exception {
+		CloseableHttpClient client = HttpClients.createDefault();
+		HttpGet httpGet = new HttpGet("http://localhost:8080/orange/path/hello");
 		httpGet.setHeader("Content-type", "application/json;charset=utf-8");
 		client.execute(httpGet);
 	}
