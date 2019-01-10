@@ -9,8 +9,7 @@
 		</layout>
 	</appender>
 
-	<appender name="info"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<appender name="info" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<filter class="ch.qos.logback.classic.filter.LevelFilter">
 			<level>ERROR</level>
 			<!-- 表示不匹配该级别及以上 -->
@@ -30,8 +29,7 @@
 		</rollingPolicy>
 	</appender>
 
-	<appender name="error"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 			<level>ERROR</level>
 		</filter>
