@@ -9,7 +9,7 @@
 		</layout>
 	</appender>
 
-	<appender name="fileinfo"
+	<appender name="info"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<filter class="ch.qos.logback.classic.filter.LevelFilter">
 			<level>ERROR</level>
@@ -30,7 +30,7 @@
 		</rollingPolicy>
 	</appender>
 
-	<appender name="fileerror"
+	<appender name="error"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 			<level>ERROR</level>
@@ -44,7 +44,7 @@
 		<!-- 设置滚动策略 -->
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- 路径 -->
-			<fileNamePattern>log/orange.err.%d.log</fileNamePattern>
+			<fileNamePattern>log/orange.error.%d.log</fileNamePattern>
 
 			<!-- 控制保留的归档文件的最大数量，超出数量就删除旧文件，假设设置每个月滚动， <maxHistory> 是1，则只保存最近1个月的文件，删除之前的旧文件 -->
 			<MaxHistory>1</MaxHistory>
@@ -53,7 +53,7 @@
 	<!--注意这个节点要写在最后 -->
 	<root level="INFO">
 		<appender-ref ref="console" />
-		<appender-ref ref="fileinfo" />
-		<appender-ref ref="fileerror" />
+		<appender-ref ref="info" />
+		<appender-ref ref="error" />
 	</root>
 </configuration>
