@@ -14,13 +14,17 @@ import com.orange.bean.User;
 @RestController
 public class OrangeController {
 	
+	/**
+	 * 通过requestparam获取请求值
+	 * @param id
+	 */
 	@GetMapping("/get")
 	public void get(@RequestParam(value="id") String id){
 		System.out.println(id);
 	}
 	
 	/**
-	 * 正常匹配
+	 * 通过url匹配传递值，正常匹配
 	 * @param id
 	 */
 	@GetMapping("/path/{id}")
