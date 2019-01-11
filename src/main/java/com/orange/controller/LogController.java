@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.orange.utils.PropertiesUtils;
+
 @RestController
 public class LogController {
 	
@@ -16,6 +18,7 @@ public class LogController {
 	 */
 	@RequestMapping("/log")
 	public void log(){
+		System.out.println(PropertiesUtils.getString("elasticsearch.cluster.nodes"));
 		logger.info("1111");
 		logger.error("2222");
 	}
