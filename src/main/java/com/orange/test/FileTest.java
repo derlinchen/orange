@@ -16,7 +16,7 @@ public class FileTest {
 
 	public static void main(String[] args) {
 		try {
-			pathmethod();
+			getmethod();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -27,7 +27,7 @@ public class FileTest {
 		// 创建httpclient对象
 		CloseableHttpClient client = HttpClients.createDefault();
 		URIBuilder builder = new URIBuilder("http://localhost:8080/orange/get.do");
-		builder.setParameter("id", "hello");
+		builder.setParameter("id", "张三");
 		HttpGet httpGet = new HttpGet(builder.build());
 		httpGet.setHeader("Content-type", "application/json;charset=utf-8");
 		client.execute(httpGet);
@@ -48,20 +48,22 @@ public class FileTest {
 		// 创建post方式请求对象
 		HttpPut httpPut = new HttpPut("http://localhost:8080/orange/put.do");
 		httpPut.setHeader("Content-type", "application/json;charset=utf-8");
-		StringEntity se = new StringEntity(new Gson().toJson(user));
+		// 解决参数传递乱码
+		StringEntity se = new StringEntity(new Gson().toJson(user), "UTF-8");
 		httpPut.setEntity(se);
 		client.execute(httpPut);
 	}
 	
 	public static void postmethod() throws Exception {
 		User user = new User();
-		user.setId("122");
+		user.setId("华盛顿");
 		// 创建httpclient对象
 		CloseableHttpClient client = HttpClients.createDefault();
 		// 创建post方式请求对象
 		HttpPost httpPost = new HttpPost("http://localhost:8080/orange/post.do");
 		httpPost.addHeader("Content-Type", "application/json;charset=utf-8");
-		StringEntity entity = new StringEntity(new Gson().toJson(user));
+		// 解决参数传递乱码
+		StringEntity entity = new StringEntity(new Gson().toJson(user), "UTF-8");
         httpPost.setEntity(entity);
 		// 执行请求操作，并拿到结果（同步阻塞）
 		client.execute(httpPost);
@@ -76,7 +78,8 @@ public class FileTest {
 		// 创建post方式请求对象
 		HttpDelete httpDelete = new HttpDelete("http://localhost:8080/orange/delete.do");
 		httpDelete.addHeader("Content-Type", "application/json;charset=utf-8");
-		StringEntity entity = new StringEntity(new Gson().toJson(user));
+		// 解决参数传递乱码
+		StringEntity entity = new StringEntity(new Gson().toJson(user), "UTF-8");
 		httpDelete.setEntity(entity);
 		// 执行请求操作，并拿到结果（同步阻塞）
 		client.execute(httpDelete);

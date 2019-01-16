@@ -47,7 +47,7 @@ public class OrangeController {
         System.out.println(user.getId());
     }
 	
-	@PostMapping("/post")
+	@PostMapping(value = "/post")
 	public void post(@RequestBody User user){
 		System.out.println(user.getId());
 	}
