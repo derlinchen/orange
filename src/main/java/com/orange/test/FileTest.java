@@ -19,9 +19,26 @@ public class FileTest {
 
 	public static void main(String[] args) {
 		try {
-			posttoken();
+			getbytoken();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public static void getbytoken() throws Exception{
+		// 创建httpclient对象
+		CloseableHttpClient client = HttpClients.createDefault();
+		URIBuilder builder = new URIBuilder("http://localhost:8080/user");
+		builder.setParameter("access_token", "1eea4c06-51a0-4cf4-a38c-ef3b4f70a5a3");
+		HttpGet httpGet = new HttpGet(builder.build());
+		httpGet.setHeader("Content-type", "application/json;charset=utf-8");
+		HttpResponse response = client.execute(httpGet);
+		if(response != null){
+			
+			HttpEntity resEntity = response.getEntity();
+			if(resEntity != null){
+				System.out.println("============="+EntityUtils.toString(resEntity,"utf-8"));
+			}
 		}
 	}
 	
