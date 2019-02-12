@@ -19,7 +19,7 @@ public class FileTest {
 
 	public static void main(String[] args) {
 		try {
-			posttoken1();
+			putmethod();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -102,6 +102,16 @@ public class FileTest {
 	}
 	
 	public static void putmethod() throws Exception {
+		
+		// 不能加@RequestBody
+//		CloseableHttpClient client = HttpClients.createDefault();
+//		URIBuilder builder = new URIBuilder("http://localhost:8080/orange/put.do");
+//		builder.setParameter("id", "张三");
+//		HttpPut httpPut = new HttpPut(builder.build());
+//		httpPut.setHeader("Content-type", "application/json;charset=utf-8");
+//		client.execute(httpPut);
+		
+		
 		User user = new User();
 		user.setId("122");
 		// 创建httpclient对象
