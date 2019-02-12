@@ -19,7 +19,7 @@ public class FileTest {
 
 	public static void main(String[] args) {
 		try {
-			putmethod();
+			posttoken2();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -52,6 +52,29 @@ public class FileTest {
 		builder.setParameter("grant_type", "password");
 		builder.setParameter("username", "user1");
 		builder.setParameter("password", "123456789");
+		HttpPost httpPost = new HttpPost(builder.build());
+		httpPost.addHeader("Content-Type", "application/json;charset=utf-8");
+		// 解决参数传递乱码
+		// 执行请求操作，并拿到结果（同步阻塞）
+		HttpResponse response = client.execute(httpPost);
+		if(response != null){
+			
+			HttpEntity resEntity = response.getEntity();
+			if(resEntity != null){
+				System.out.println("============="+EntityUtils.toString(resEntity,"utf-8"));
+			}
+		}
+	}
+	
+	public static void posttoken2() throws Exception {
+		// 创建httpclient对象
+		CloseableHttpClient client = HttpClients.createDefault();
+		// 创建post方式请求对象
+		URIBuilder builder = new URIBuilder("http://localhost:8080/oauth/token");
+		builder.setParameter("client_id", "client_1");
+		builder.setParameter("client_secret", "123456");
+		builder.setParameter("grant_type", "refresh_token");
+		builder.setParameter("refresh_token", "9ac0ce8a-58bc-42f8-aa50-ce6e0e5d323b");
 		HttpPost httpPost = new HttpPost(builder.build());
 		httpPost.addHeader("Content-Type", "application/json;charset=utf-8");
 		// 解决参数传递乱码
