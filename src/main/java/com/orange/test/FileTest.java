@@ -1,5 +1,7 @@
 package com.orange.test;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
@@ -7,6 +9,7 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
 import com.google.gson.Gson;
 import com.orange.bean.User;
@@ -16,10 +19,27 @@ public class FileTest {
 
 	public static void main(String[] args) {
 		try {
-			getmethod();
-
+			posttoken();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public static void posttoken() throws Exception {
+		// 创建httpclient对象
+		CloseableHttpClient client = HttpClients.createDefault();
+		// 创建post方式请求对象
+		HttpPost httpPost = new HttpPost("http://localhost:8080/oauth/token?client_id=client_1&client_secret=123456&grant_type=password&username=user1&password=123456789");
+		httpPost.addHeader("Content-Type", "application/json;charset=utf-8");
+		// 解决参数传递乱码
+		// 执行请求操作，并拿到结果（同步阻塞）
+		HttpResponse response = client.execute(httpPost);
+		if(response != null){
+			
+			HttpEntity resEntity = response.getEntity();
+			if(resEntity != null){
+				System.out.println("============="+EntityUtils.toString(resEntity,"utf-8"));
+			}
 		}
 	}
 	
