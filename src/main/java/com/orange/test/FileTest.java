@@ -19,7 +19,7 @@ public class FileTest {
 
 	public static void main(String[] args) {
 		try {
-			getbytoken();
+			posttoken1();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -33,6 +33,30 @@ public class FileTest {
 		HttpGet httpGet = new HttpGet(builder.build());
 		httpGet.setHeader("Content-type", "application/json;charset=utf-8");
 		HttpResponse response = client.execute(httpGet);
+		if(response != null){
+			
+			HttpEntity resEntity = response.getEntity();
+			if(resEntity != null){
+				System.out.println("============="+EntityUtils.toString(resEntity,"utf-8"));
+			}
+		}
+	}
+	
+	public static void posttoken1() throws Exception {
+		// 创建httpclient对象
+		CloseableHttpClient client = HttpClients.createDefault();
+		// 创建post方式请求对象
+		URIBuilder builder = new URIBuilder("http://localhost:8080/oauth/token");
+		builder.setParameter("client_id", "client_1");
+		builder.setParameter("client_secret", "123456");
+		builder.setParameter("grant_type", "password");
+		builder.setParameter("username", "user1");
+		builder.setParameter("password", "123456789");
+		HttpPost httpPost = new HttpPost(builder.build());
+		httpPost.addHeader("Content-Type", "application/json;charset=utf-8");
+		// 解决参数传递乱码
+		// 执行请求操作，并拿到结果（同步阻塞）
+		HttpResponse response = client.execute(httpPost);
 		if(response != null){
 			
 			HttpEntity resEntity = response.getEntity();
