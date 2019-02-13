@@ -74,7 +74,7 @@ public class FileTest {
 		builder.setParameter("client_id", "client_1");
 		builder.setParameter("client_secret", "123456");
 		builder.setParameter("grant_type", "refresh_token");
-		builder.setParameter("refresh_token", "9ac0ce8a-58bc-42f8-aa50-ce6e0e5d323b");
+		builder.setParameter("refresh_token", "8c6b9f4c-bfa7-4d7e-87fb-a6b35d749ed8");
 		HttpPost httpPost = new HttpPost(builder.build());
 		httpPost.addHeader("Content-Type", "application/json;charset=utf-8");
 		// 解决参数传递乱码
@@ -134,7 +134,6 @@ public class FileTest {
 //		httpPut.setHeader("Content-type", "application/json;charset=utf-8");
 //		client.execute(httpPut);
 		
-		
 		User user = new User();
 		user.setId("122");
 		// 创建httpclient对象
@@ -163,7 +162,6 @@ public class FileTest {
 		client.execute(httpPost);
 	}
 	
-	
 	public static void deletemethod() throws Exception {
 		User user = new User();
 		user.setId("122");
@@ -178,6 +176,5 @@ public class FileTest {
 		// 执行请求操作，并拿到结果（同步阻塞）
 		client.execute(httpDelete);
 	}
-	
 	
 }
