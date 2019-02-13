@@ -74,7 +74,7 @@ public class FileTest {
 		builder.setParameter("client_id", "client_1");
 		builder.setParameter("client_secret", "123456");
 		builder.setParameter("grant_type", "refresh_token");
-		builder.setParameter("refresh_token", "8c6b9f4c-bfa7-4d7e-87fb-a6b35d749ed8");
+		builder.setParameter("refresh_token", "aff906d3-0dd4-4354-b464-e12bfe899812");
 		HttpPost httpPost = new HttpPost(builder.build());
 		httpPost.addHeader("Content-Type", "application/json;charset=utf-8");
 		// 解决参数传递乱码
