@@ -12,6 +12,8 @@ public class LogController {
 	
 	private final static Logger logger = LoggerFactory.getLogger(LogController.class);
 	
+	// region Log methods
+	
 	/**
 	 * 通过requestparam获取请求值
 	 * @param id
@@ -22,4 +24,7 @@ public class LogController {
 		logger.info("1111");
 		logger.error("2222");
 	}
+	
+	// endregion Log methods
+
 }
