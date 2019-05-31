@@ -1,4 +1,4 @@
-package com.orange.bean;
+package com.orange.entity;
 
 public class User {
 	
