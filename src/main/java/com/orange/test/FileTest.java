@@ -12,7 +12,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import com.google.gson.Gson;
-import com.orange.bean.User;
+import com.orange.entity.User;
 import com.orange.utils.HttpDelete;
 
 public class FileTest {
